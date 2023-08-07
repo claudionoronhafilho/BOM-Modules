@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_bom_form_view_product_cost" model="ir.ui.view">
+        <field name="name">mrp.bom.form.product.cost</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="bom_total_cost"/>
+            </field>
+            <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='product_qty']" position="after">
+                <field name="product_standard_price"/>
+                <field name="product_total_cost" sum="Total Cost"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_bom_tree_view_product_cost" model="ir.ui.view">
+        <field name="name">mrp.bom.tree.product.cost</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="bom_total_cost" optional="show"/>
+            </field>
+        </field>
+    </record>
+</odoo>
